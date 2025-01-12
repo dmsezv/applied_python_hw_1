@@ -107,7 +107,7 @@ if api_key:
             city_data = process_data(data, city)
 
             st.subheader(f"Описательная статистика для {city}")
-            st.write(city_data.describe())
+            st.write(city_data[["temperature", "rolling_mean", "std_dev", "anomaly"]].describe(include='all'))
 
             st.subheader("Временной ряд температур")
             min_year = city_data['timestamp'].dt.year.min()
