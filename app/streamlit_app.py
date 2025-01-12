@@ -90,8 +90,8 @@ if api_key:
             data = data.sort_values(by=["city", "timestamp"])
 
             city = st.selectbox("Выберите город", data["city"].unique())
-
             current_temp = fetch_current_temperature(city, api_key)
+
             if current_temp is not None:
                 st.subheader(f"Текущая температура в {city}: {current_temp} °C")
                 current_season = month_to_season[pd.Timestamp.now().month]
@@ -110,7 +110,6 @@ if api_key:
             st.write(city_data.describe())
 
             st.subheader("Временной ряд температур")
-
             min_year = city_data['timestamp'].dt.year.min()
             max_year = city_data['timestamp'].dt.year.max()
             start_year, end_year = st.slider(
